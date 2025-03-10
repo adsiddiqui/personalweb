@@ -6,6 +6,8 @@ const nextConfig = {
     unoptimized: true, // Required for static export
   },
   trailingSlash: true, // Recommended for static exports
+  basePath: '',
+  assetPrefix: './'
 };
 
 export default nextConfig; 
