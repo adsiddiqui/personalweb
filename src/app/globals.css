@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-black;
+  }
+}
+
+.section-divider-container {
+  @apply relative text-center;
+}
+
+.section-divider-container::before,
+.section-divider-container::after {
+  content: '';
+  @apply absolute top-1/2 w-1/4 h-px bg-gray-200;
+}
+
+.section-divider-container::before {
+  @apply left-0;
+}
+
+.section-divider-container::after {
+  @apply right-0;
+} 
