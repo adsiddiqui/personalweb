@@ -60,6 +60,22 @@
             <div class="project-grid">
                 <div class="project-card">
                     <div class="project-image">
+                        <img src="images/ai-power-stack.jpg" alt="AI Power Stack 3D Model" class="featured-image">
+                    </div>
+                    <h3>AI Power Stack</h3>
+                    <p>Interactive 3D from chip to grid</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/gpu-cluster.jpg" alt="Infra Economics GPU Cluster" class="featured-image">
+                    </div>
+                    <h3>Infra Economics</h3>
+                    <p>10k H100 cluster cost model</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
                         <img src="images/homescope.jpg" alt="RentLens Project" class="featured-image">
                     </div>
                     <h3>RentLens</h3>
@@ -142,6 +158,30 @@
     </div>
 
     <!-- Project Modals -->
+    <div class="modal" id="aistack-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>AI Power Stack</h3>
+            <p>Interactive 3D from chip to grid</p>
+            <div class="modal-description">
+                <p>A 3D thing I made with React, Three.js, and Tailwind—you can zoom from chip-level silicon all the way up to grid-scale stuff like nuclear. Each layer shows where the bottlenecks are (power per chip, cooling per rack, grid congestion, etc.).</p>
+                <p>Packed in 50+ metrics so you can poke around and see how the whole stack fits together without opening a spreadsheet. Just a nicer way to wrap your head around where AI compute actually runs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="gpucluster-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Infra Economics</h3>
+            <p>10k H100 cluster cost model</p>
+            <div class="modal-description">
+                <p>Interactive cost model for a 10k H100 training cluster—vanilla JS, HTML/CSS, SVG. You get 200+ knobs to tweak (compute, networking, power, cooling, storage) and see how the money splits across the stack.</p>
+                <p>Roughly $732M capex and $55M/year opex for a hyperscale-style facility, with per-GPU and category breakdowns over a 3-year cycle. Handy for ballparking buildouts or comparing options.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="homescope-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>

@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Project modals
     document.querySelectorAll('.project-card').forEach((card, index) => {
-        if (index === 0) card.querySelector('.project-image').addEventListener('click', () => openModal('homescope-modal'));
-        if (index === 1) card.querySelector('.project-image').addEventListener('click', () => openModal('newsyn-modal'));
+        if (index === 0) card.querySelector('.project-image').addEventListener('click', () => openModal('aistack-modal'));
+        if (index === 1) card.querySelector('.project-image').addEventListener('click', () => openModal('gpucluster-modal'));
+        if (index === 2) card.querySelector('.project-image').addEventListener('click', () => openModal('homescope-modal'));
+        if (index === 3) card.querySelector('.project-image').addEventListener('click', () => openModal('newsyn-modal'));
     });
 
     // Close buttons
