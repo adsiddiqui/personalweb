@@ -399,6 +399,12 @@ main {
     margin: 0 auto;
 }
 
+/* Double the gap between first row and second row of projects */
+.project-grid .project-card:nth-child(3),
+.project-grid .project-card:nth-child(4) {
+    margin-top: calc(var(--spacing-unit) * 4);
+}
+
 .project-card .project-image {
     width: 100%;
     margin: 0;
