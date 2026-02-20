@@ -1,214 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adeeluddin Siddiqui</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adeel Siddiqui</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #141419;
+      --bg-card: #1a1a20;
+      --bg-card-hover: #222228;
+      --text-primary: #e0e0e4;
+      --text-secondary: #909098;
+      --text-muted: #62626c;
+      --accent: #a0a0b0;
+      --border: #2a2a32;
+      --overlay-bg: rgba(20, 20, 24, 0.7);
+      --modal-bg: #323238;
+      --font-body: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: rgba(160, 160, 176, 0.25);
+      color: var(--text-primary);
+    }
+
+    a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    nav {
+      padding: 32px 0 0;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    nav .name {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+    }
+
+    .intro {
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.15s forwards;
+    }
+
+    .intro .location {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .intro .location::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #5a7a5a;
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    .intro p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section {
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .section:nth-child(3) { animation-delay: 0.3s; }
+    .section:nth-child(4) { animation-delay: 0.45s; }
+
+    .section-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .work-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .work-item:hover {
+      border-bottom-color: var(--border);
+    }
+
+    .work-item:last-child {
+      border-bottom: none;
+    }
+
+    .work-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .work-company {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-primary);
+      transition: color 0.2s ease;
+    }
+
+    .work-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-weight: 300;
+    }
+
+    .work-years {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-weight: 300;
+      white-space: nowrap;
+      margin-left: 24px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .project-card {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+
+    .project-card:hover {
+      background: var(--bg-card);
+      border-color: var(--text-muted);
+    }
+
+    .project-name {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .project-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-weight: 300;
+      line-height: 1.45;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: var(--modal-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      max-width: 520px;
+      width: 100%;
+      padding: 36px 32px 32px;
+      position: relative;
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.25s ease;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      font-family: var(--font-body);
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .modal-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .modal-body p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    .modal-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-body a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--text-muted);
+      text-underline-offset: 3px;
+    }
+
+    .modal-body a:hover {
+      text-decoration-color: var(--text-primary);
+    }
+
+    .modal::-webkit-scrollbar {
+      width: 4px;
+    }
+    .modal::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .modal::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    footer {
+      padding: 40px 0 36px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.6s forwards;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-links .sep {
+      color: var(--border);
+      user-select: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 540px) {
+      nav { margin-bottom: 40px; }
+      .intro { margin-bottom: 44px; }
+      .intro p { font-size: 15px; }
+      .section { margin-bottom: 44px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .work-item { flex-direction: column; gap: 4px; }
+      .work-years { margin-left: 0; }
+      .footer-links { gap: 16px; }
+      .modal { padding: 28px 24px 24px; }
+    }
+  </style>
 </head>
 <body>
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <p class="intro-text">
-                    hey I'm Adeel<br>
-                    a tpm working in data center infra
-                </p>
-            </div>
-            <div class="page-links">
-                <a href="#notes" class="active">work</a>
-                <a href="about.html">about</a>
-            </div>
-        </section>
+  <div class="container">
 
-        <section id="work" class="full-width">
-            <div class="work-grid">
-                <div class="featured-work">
-                    <div class="work-image">
-                        <img src="images/data-center.jpg" alt="Data Center Infrastructure" class="featured-image">
-                    </div>
-                    <h3>Data Center Feasibility</h3>
-                    <p class="company">LandGate</p>
-                </div>
-                
-                <div class="secondary-works">
-                    <div class="work-card">
-                        <div class="work-image">
-                            <img src="images/neu.jpg" alt="Neu Money Platform" class="featured-image">
-                        </div>
-                        <h3>Credit Analytics</h3>
-                        <p class="company">Neu Money</p>
-                    </div>
-                    
-                    <div class="work-card">
-                        <div class="work-image">
-                            <img src="images/stvdio.jpg" alt="STVDIO Payment System" class="featured-image">
-                        </div>
-                        <h3>Payment Gateway System</h3>
-                        <p class="company">STVDIO</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <nav>
+      <span class="name">Adeel Siddiqui</span>
+    </nav>
 
-        <div class="section-divider-container">
-            <span class="section-divider">Projects</span>
-        </div>
-
-        <section id="projects" class="full-width">
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/ai-power-stack.jpg" alt="AI Power Stack 3D Model" class="featured-image">
-                    </div>
-                    <h3>AI Power Stack</h3>
-                    <p>Interactive 3D from chip to grid</p>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/gpu-cluster.jpg" alt="Infra Economics GPU Cluster" class="featured-image">
-                    </div>
-                    <h3>Infra Economics</h3>
-                    <p>10k H100 cluster cost model</p>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/homescope.jpg" alt="RentLens Project" class="featured-image">
-                    </div>
-                    <h3>RentLens</h3>
-                    <p>Interactive map for rental pricing insights</p>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/newsyn.jpg" alt="Pathos News Sentiment Engine" class="featured-image">
-                    </div>
-                    <h3>Pathos</h3>
-                    <p>LLM powered news sentiment engine</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="section-divider-container">
-            <span class="section-divider">Contact</span>
-        </div>
-
-        <section id="contact" class="full-width">
-            <div class="contact-grid">
-                <div class="contact-icons">
-                    <a href="mailto:ad.siddiqui2@gmail.com" class="contact-link" aria-label="Email">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="https://x.com/adeelsid7" target="_blank" class="contact-link" aria-label="X (Twitter)">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/adeel-siddiqui37/" target="_blank" class="contact-link" aria-label="LinkedIn">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Work Experience Modals -->
-    <div class="modal" id="landgate-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>LandGate</h3>
-            <p class="company">Site Feasibility</p>
-            <div class="modal-description">
-                <p>I’m a TPM at <a href="https://www.landgate.com/energy-markets/data-centers" target="_blank">LandGate</a> focused on data center growth and power infrastructure. I build tools that help hyperscalers and developers choose new data center sites by combining grid capacity, interconnection constraints, and network infrastructure.</p>
-                <p>I also work on portfolio and cost modeling for data centers, solar, and battery storage so teams can compare sites and projects on delivered power cost and long-term economics.</p>
-            </div>
-        </div>
+    <div class="intro">
+      <div class="location">San Francisco, CA</div>
+      <p>
+        I work on data center feasibility and power infrastructure at LandGate. I like reducing ambiguity in complex systems and building tools so others can explore the same tradeoffs.
+      </p>
+      <p>
+        I studied Quantitative Economics & Econometrics at UCLA. Outside of work, I build side projects, discover new spots in the city, and get outside when I can.
+      </p>
     </div>
 
-    <div class="modal" id="neu-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Neu Money</h3>
-            <p class="company">Credit Analytics</p>
-            <div class="modal-description">
-                <p>At <a href="https://neumoney.app" target="_blank">Neu Money</a>, I was a Product Manager focused on our fixed-fee credit card and its performance. I worked on the unit economics of the card, building simple models to understand how pricing, limits, and customer behavior affected revenue and losses across thousands of accounts.</p>
-                <p>I also helped shape credit policies and onboarding flows, using real usage and repayment patterns to refine limit rules and simplify KYC and activation. The goal was to keep the product healthy for the portfolio while making it easier for customers to get approved, activate, and use their card.</p>
-            </div>
+    <div class="section">
+      <div class="section-title">Work</div>
+      <div class="work-item" onclick="openModal('landgate')">
+        <div class="work-left">
+          <span class="work-company">LandGate</span>
+          <span class="work-desc">technical product manager</span>
         </div>
+        <span class="work-years">Aug 2023 – Present</span>
+      </div>
+      <div class="work-item" onclick="openModal('neumoney')">
+        <div class="work-left">
+          <span class="work-company">Neu Money</span>
+          <span class="work-desc">credit analytics</span>
+        </div>
+        <span class="work-years">Dec 2022 – Jul 2023</span>
+      </div>
+      <div class="work-item" onclick="openModal('stvdio')">
+        <div class="work-left">
+          <span class="work-company">STVDIO</span>
+          <span class="work-desc">product management intern</span>
+        </div>
+        <span class="work-years">Aug 2022 – Nov 2022</span>
+      </div>
+      <div class="work-item" onclick="openModal('ucla')">
+        <div class="work-left">
+          <span class="work-company">UCLA Cluster Program</span>
+          <span class="work-desc">embedded inquiry & research specialist</span>
+        </div>
+        <span class="work-years">Sep 2021 – Jun 2022</span>
+      </div>
     </div>
 
-    <div class="modal" id="stvdio-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>STVDIO</h3>
-            <p class="company">Payments &amp; KPIs</p>
-            <div class="modal-description">
-                <p>I joined <a href="https://stvd.io" target="_blank">STVDIO</a> as a Product Management Intern. My role focused on integrating payment gateways and automating KPI tracking.</p>
-                <p>I wrote Python scripts and worked with the Matrix API to make KPI monitoring more efficient, saving a lot of manual work each week. I also built financial models in Tableau to fine-tune payment gateway pricing.</p>
-                <p>I enjoyed tackling tricky problems and improving our financial processes with smart data solutions.</p>
-            </div>
+    <div class="section">
+      <div class="section-title">Projects</div>
+      <div class="projects-grid">
+        <a href="https://www.ai-power.space/" class="project-card" target="_blank" rel="noopener">
+          <div class="project-name">AI Power Stack</div>
+          <div class="project-subtitle">Interactive 3D from chip to grid</div>
+        </a>
+        <a href="https://www.infra-economics.com" class="project-card" target="_blank" rel="noopener">
+          <div class="project-name">Infra Economics</div>
+          <div class="project-subtitle">10k H100 cluster cost model</div>
+        </a>
+        <div class="project-card" onclick="openModal('rentlens')">
+          <div class="project-name">RentLens</div>
+          <div class="project-subtitle">Interactive map for rental pricing insights</div>
         </div>
+        <div class="project-card" onclick="openModal('pathos')">
+          <div class="project-name">Pathos</div>
+          <div class="project-subtitle">LLM powered news sentiment engine</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Project Modals -->
-    <div class="modal" id="aistack-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>AI Power Stack</h3>
-            <p>Interactive 3D from chip to grid</p>
-            <div class="modal-description">
-                <p>I built a 3D application with React, Three.js, and Tailwind that models the AI power stack. The interface lets you navigate from chip-level silicon up to grid-scale assets such as nuclear, with capacity constraints and bottlenecks visible at each layer—from power per chip and cooling per rack to grid congestion.</p>
-                <p>The app incorporates 50+ metrics so you can explore how the stack fits together and where limits sit, without relying on spreadsheets alone.</p>
-            </div>
-        </div>
-    </div>
+    <footer>
+      <div class="footer-links">
+        <a href="https://x.com/adeelsid7" target="_blank" rel="noopener">Twitter</a>
+        <span class="sep">·</span>
+        <a href="https://www.linkedin.com/in/adeel-siddiqui37/" target="_blank" rel="noopener">LinkedIn</a>
+        <span class="sep">·</span>
+        <a href="mailto:ad.siddiqui2@gmail.com">Email</a>
+      </div>
+    </footer>
 
-    <div class="modal" id="gpucluster-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Infra Economics</h3>
-            <p>10k H100 cluster cost model</p>
-            <div class="modal-description">
-                <p>An interactive cost model for a 10,000 H100 training cluster, built in vanilla JS, HTML/CSS, and SVG. It exposes 200+ inputs for compute, networking, power, cooling, and storage so you can see how capital is allocated across the stack.</p>
-                <p>The model reflects a hyperscale-style facility—approximately $732M capex and $55M/year opex—with category and per-GPU breakdowns over a three-year depreciation cycle, for comparing buildout options and sanity-checking assumptions.</p>
-            </div>
-        </div>
-    </div>
+  </div>
 
-    <div class="modal" id="homescope-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>RentLens</h3>
-            <p>Interactive map for rental pricing insights</p>
-            <div class="modal-description">
-                <p>I created <a href="https://rent-lens.netlify.app/" target="_blank">RentLens</a> because I struggled to find reliable rent prices in different neighborhoods. RentLens is a user-friendly tool that shows rent per square foot for various listings on an interactive map.</p>
-                <p>You can easily filter results in real-time, view heat maps to see price trends, adjust range sliders to fit your budget, and save your favorite listings for easy comparisons.</p>
-                <p>Currently available for the San Francisco Bay Area, with more cities coming soon. It made house hunting much simpler and transparent for me, and I hope it helps others too!</p>
-            </div>
-        </div>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">&#215;</button>
+      <div class="modal-label" id="modalLabel"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-body" id="modalBody"></div>
     </div>
+  </div>
 
-    <div class="modal" id="newsyn-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Pathos</h3>
-            <p>LLM powered news sentiment engine</p>
-            <div class="modal-description">
-                <p><a href="https://pathos-news.space" target="_blank">Pathos</a> is an LLM powered news sentiment engine that curates articles based on your emotional preferences.</p>
-                <p>I noticed that news today heavily centers around negativity, with a goal to increase engagement through shock value. I created this project to try and reclaim control over our emotional well-being, in our own small way.</p>
-                <p>The project aims to transform news consumption from a source of stress into a personalized journey that aligns with your feelings. Try it out!</p>
-            </div>
-        </div>
-    </div>
+  <script>
+    const content = {
+      landgate: {
+        label: 'LandGate',
+        title: 'Technical Product Manager',
+        body: `<p>Built a data center feasibility model for 50k+ parcels, using bus-level ATC, T&D headroom, IQ depth, and fiber proximity to rank sites for portfolio triage. Improved shortlist hitrate by 30%, and cut time to IC-ready lists by 50%.</p>
+               <p>Led data center expansion triage using P0/P1/P2 tiers, stress-testing ramp targets against grid headroom, fuel access, and power price shocks to flag binding constraints early and stabilize the expansion plan across stakeholders.</p>
+               <p>Designed a data center planning dashboard, consolidating MW ramps, COD targets, and constraints from CSV snapshots into a plan-of-record with a decision log, standardizing inputs across 70+ sites for 18 customers.</p>
+               <p>Developed internal data ingestion tooling to pull data from 1500+ sources (transmission, solar, fiber, gas offtake) into one platform, refreshing hundreds of times per day and incorporated into all product offerings.</p>
+               <p>Managed team of 15 data vendors across 3 countries, balancing workload and timelines for consistent data quality.</p>`
+      },
+      neumoney: {
+        label: 'Neu Money',
+        title: 'Project Manager, Credit Analytics',
+        body: `<p>Developed SQL cashflow models for Neu's fixed-fee credit card, stress-testing retention, loss rates, and cost of funds across segments to set pricing tiers and limit ranges for 7k+ customers. Increased average fee yield by 12%.</p>
+               <p>Designed behavior-based risk bands using application data, utilization, and repayment patterns to automate initial limits and CLIs. Reduced manual limit reviews by 50% and cut early-delinquency rates by 15% in high-risk cohorts.</p>
+               <p>Streamlined KYC and card-activation flows, cutting approval-to-transaction time 25% and credit-support tickets 20%.</p>`
+      },
+      stvdio: {
+        label: 'STVDIO',
+        title: 'Product Management Intern',
+        body: `<p>Automated KPI tracking using Python scripts and Matrix API, saving 7 hrs/wk and enabling quicker strategic pivots.</p>
+               <p>Built a financial model in Tableau for payment gateway pricing. Conducted sensitivity analysis and scenario modeling to uncover $50k in cost savings from adjusted fee structures, improving revenue forecasting accuracy by 15%.</p>
+               <p>Designed an interface with WooCommerce and Stripe plugins, streamlining financial workflows and saving 6hr/week.</p>`
+      },
+      ucla: {
+        label: 'UCLA Cluster Program',
+        title: 'Embedded Inquiry and Research Specialist',
+        body: `<p>Conducted 200+ hours of 1-on-1 academic mentorship sessions and office hours, receiving 93% positive reviews.</p>
+               <p>Designed a data filtering strategy for 150+ students to navigate databases, reducing keyword research time by ~15%.</p>
+               <p>Worked with 3 departmental teams to analyze 100+ responses and led 3 structural changes across 5 testing segments.</p>`
+      },
+      aipowerstack: {
+        label: 'Project',
+        title: 'AI Power Stack - 3D Model',
+        body: `<p>Modeled the AI power stack in a 3D app using React, Three.js and Tailwind CSS. Interactive interface allows users to navigate from chip-level silicon to grid-scale nuclear plants, exposing capacity constraints for compute in each layer.</p>
+               <p>Incorporated 50+ metrics from power density (1200W/chip) to cooling (120kW/rack) and grid congestion (2.6TW).</p>`
+      },
+      infraecon: {
+        label: 'Project',
+        title: 'Infra Economics - GPU Cluster Costs',
+        body: `<p>Built an interactive cost model for a 10,000 H100 training cluster in vanilla JS, HTML/CSS, and SVG, parameterizing 200+ inputs to breakdown capital allocation across compute hardware, networking fabric, infrastructure, and storage.</p>
+               <p>Modeled the economics of a hyperscale AI training facility with $732M capex and $55M/year opex, breaking GPUs, power, cooling, networking, and storage into percentage share and per-GPU costs over a three-year depreciation cycle.</p>`
+      },
+      rentlens: {
+        label: 'Project',
+        title: 'RentLens',
+        body: `<p>I created <a href="https://rent-lens.netlify.app/" target="_blank">RentLens</a> because I struggled to find reliable rent prices in different neighborhoods. RentLens is a user-friendly tool that shows rent per square foot for various listings on an interactive map.</p>
+               <p>You can easily filter results in real-time, view heat maps to see price trends, adjust range sliders to fit your budget, and save your favorite listings for easy comparisons.</p>
+               <p>Currently available for the San Francisco Bay Area, with more cities coming soon. It made house hunting much simpler and transparent for me, and I hope it helps others too!</p>`
+      },
+      pathos: {
+        label: 'Project',
+        title: 'Pathos',
+        body: `<p><a href="https://pathos-news.space" target="_blank">Pathos</a> is an LLM powered news sentiment engine that curates articles based on your emotional preferences.</p>
+               <p>I noticed that news today heavily centers around negativity, with a goal to increase engagement through shock value. I created this project to try and reclaim control over our emotional well-being, in our own small way.</p>
+               <p>The project aims to transform news consumption from a source of stress into a personalized journey that aligns with your feelings. Try it out!</p>`
+      }
+    };
 
-    <!-- Add right before closing body tag -->
-    <script src="script.js"></script>
+    function openModal(key) {
+      const data = content[key];
+      if (!data) return;
+      document.getElementById('modalLabel').textContent = data.label;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalBody').innerHTML = data.body;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
 </body>
-</html> 
+</html>
